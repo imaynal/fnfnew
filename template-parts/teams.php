@@ -40,50 +40,63 @@ get_header();
 
         <div class="row">
 
+                    <?php
+                            $args_query = array(
+                        'post_type' => array('team'),
+                        'order' => 'ASC',
+                        'orderby' => 'date',
+                        'tax_query' => array(
+                            array(
+                                'taxonomy' => 'Home',
+                                'field' => 'term_id',
+                                'terms' => array(),
+                                'operator' => 'IN',
+                                'include_children' => false,
+                            ),
+                        ),
+                        'cat' => 9,
+                        'category_name' => 'Home',
+                    );
+                
+                $_posts = new WP_Query($args_query);
+                ?>
+                <?php if ($_posts->have_posts()):?>
 
+                    <?php while ( $_posts->have_posts() ) : $_posts->the_post();?>
 
-<?php $args = array(
-    'post_type' => 'team',
-    
-);
-$_posts = new WP_Query($args);
-?>
-<?php if ($_posts->have_posts()):?>
-
-    <?php while ( $_posts->have_posts() ) : $_posts->the_post();?>
-
-    <div class="col-md-6 col-lg-3">
-                        <div class="team-item">
-                                    <?php  the_post_thumbnail();?>
-                                <div class="team-content">
-                                    <div class="team-bio">
-                                        <h5><a href="#"><?php the_title();?></a></h5>
-                                        <span><?php
-                                        $meta_value= get_post_meta($post->ID, 'team_designation', true);
-                                        echo $meta_value;
-                                        ?> </span>
+                    <div class="col-md-6 col-lg-3">
+                                        <div class="team-item">
+                                                    <?php  the_post_thumbnail();?>
+                                                <div class="team-content">
+                                                    <div class="team-bio">
+                                                        <h5><a href="#"><?php the_title();?></a></h5>
+                                                        <span><?php
+                                                        $meta_value= get_post_meta($post->ID, 'team_designation', true);
+                                                        echo $meta_value;
+                                                        ?> </span>
+                                                    </div>
+                                                <div class="social-btn"><i class="far fa-share-alt"></i></div>
+                                            </div>
+                                            <div class="team-social">
+                                                    <a href="<?php
+                                                        $meta_value= get_post_meta($post->ID, 'team_facebook', true);
+                                                        echo $meta_value;
+                                                        ?>" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                                    <a href="<?php $meta_value= get_post_meta($post->ID, 'team_twitter', true);
+                                                        echo $meta_value;?>" target="_blank"><i class="fab fa-twitter"></i></a>
+                                                    <a href="<?php $meta_value= get_post_meta($post->ID, 'team_instagram', true);
+                                                        echo $meta_value;?>" target="_blank"><i class="fab fa-instagram"></i></a>
+                                                    <a href="<?php $meta_value= get_post_meta($post->ID, 'team_youtube', true);
+                                                        echo $meta_value;?>" target="_blank"><i class="fab fa-youtube"></i></a>
+                                            </div>
+                                        </div>
                                     </div>
-                                <div class="social-btn"><i class="far fa-share-alt"></i></div>
-                            </div>
-                            <div class="team-social">
-                                    <a href="<?php
-                                        $meta_value= get_post_meta($post->ID, 'team_facebook', true);
-                                        echo $meta_value;
-                                        ?>" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="<?php $meta_value= get_post_meta($post->ID, 'team_twitter', true);
-                                        echo $meta_value;?>" target="_blank"><i class="fab fa-twitter"></i></a>
-                                    <a href="<?php $meta_value= get_post_meta($post->ID, 'team_instagram', true);
-                                        echo $meta_value;?>" target="_blank"><i class="fab fa-instagram"></i></a>
-                                    <a href="<?php $meta_value= get_post_meta($post->ID, 'team_youtube', true);
-                                        echo $meta_value;?>" target="_blank"><i class="fab fa-youtube"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                            
-    <?php endwhile;
+                                            
+                    <?php endwhile;
 
-        endif;
-        ?>
-</div>
+                        endif;
+                        wp_reset_postdata();
+                        ?>
+                </div>
 
-        <?php get_footer(); ?>
+                        <?php get_footer(); ?>

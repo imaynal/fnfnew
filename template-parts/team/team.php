@@ -14,9 +14,13 @@
 
 
 <?php $args = array(
-    'post_type' => 'team',
-    'posts_per_page' => '2',
-    
+      'post_type' => array('team'),
+      'post_status' => array('publish'),
+      'posts_per_page' => 4,
+      'order' => 'ASC',
+      'orderby' => 'date',
+     
+   
     
     
 );
@@ -57,6 +61,7 @@ $_posts = new WP_Query($args);
     <?php endwhile;
 
         endif;
+        wp_reset_postdata();
         ?>
 </div>
             </div>

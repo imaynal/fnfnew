@@ -3,15 +3,34 @@ function fnf_team(){
     register_post_type('team',
     array(
         'labels' => array(
-            'name' => ('Teams'),
-            'singular_name' => ('Team'),
-            'add_new' => ('Add New Team Member'),
-            'add_new_item' => ('Add New Team Memnber'),
-            'edit_item' => ('Edit Team'),
-            'new_item' => ('New Team'),
-            'view_item' => (' view Team'),
-            'not_found' => ('sorry, we cold not found'),
-        ),
+				'name' => _x( 'teams', 'Post Type General Name', 'fnfnetwork' ),
+				'singular_name' => _x( 'team', 'Post Type Singular Name', 'fnfnetwork' ),
+				'menu_name' => _x( 'teams', 'Admin Menu text', 'fnfnetwork' ),
+				'name_admin_bar' => _x( 'team', 'Add New on Toolbar', 'fnfnetwork' ),
+				'archives' => __( 'team', 'fnfnetwork' ),
+				'attributes' => __( 'team', 'fnfnetwork' ),
+				'parent_item_colon' => __( 'team', 'fnfnetwork' ),
+				'all_items' => __( 'All teams', 'fnfnetwork' ),
+				'add_new_item' => __( 'Add New team', 'fnfnetwork' ),
+				'add_new' => __( 'Add New', 'fnfnetwork' ),
+				'new_item' => __( 'New team', 'fnfnetwork' ),
+				'edit_item' => __( 'Edit team', 'fnfnetwork' ),
+				'update_item' => __( 'Update team', 'fnfnetwork' ),
+				'view_item' => __( 'View team', 'fnfnetwork' ),
+				'view_items' => __( 'View teams', 'fnfnetwork' ),
+				'search_items' => __( 'Search team', 'fnfnetwork' ),
+				'not_found' => __( 'Not found', 'fnfnetwork' ),
+				'not_found_in_trash' => __( 'Not found in Trash', 'fnfnetwork' ),
+				'featured_image' => __( 'Featured Image', 'fnfnetwork' ),
+				'set_featured_image' => __( 'Set featured image', 'fnfnetwork' ),
+				'remove_featured_image' => __( 'Remove featured image', 'fnfnetwork' ),
+				'use_featured_image' => __( 'Use as featured image', 'fnfnetwork' ),
+				'insert_into_item' => __( 'Insert into team', 'fnfnetwork' ),
+				'uploaded_to_this_item' => __( 'Uploaded to this team', 'fnfnetwork' ),
+				'items_list' => __( 'teams list', 'fnfnetwork' ),
+				'items_list_navigation' => __( 'teams list navigation', 'fnfnetwork' ),
+				'filter_items_list' => __( 'Filter teams list', 'fnfnetwork' ),
+       	),
         'menu_icon' => 'dashicons-images-alt',
         'public' => false,
         'public_quearable' => false,
@@ -42,28 +61,28 @@ add_action('init', 'fnf_team');
  */
 function fnf_team_cat() {
 	// Add new taxonomy, make it hierarchical (like categories)
-	$labels = array(
-		'name'              => _x( 'Team Categorys', 'taxonomy general name', 'fnfnetwork' ),
-		'singular_name'     => _x( 'Team Category', 'taxonomy singular name', 'fnfnetwork' ),
-		'search_items'      => __( 'Search Team Categorys', 'fnfnetwork' ),
-		'all_items'         => __( 'All Team Categorys', 'fnfnetwork' ),
-		'parent_item'       => __( 'Parent Team Category', 'fnfnetwork' ),
-		'parent_item_colon' => __( 'Parent Team Category:', 'fnfnetwork' ),
-		'edit_item'         => __( 'Edit Team Category', 'fnfnetwork' ),
-		'update_item'       => __( 'Update Team Category', 'fnfnetwork' ),
-		'add_new_item'      => __( 'Add New Team Category', 'fnfnetwork' ),
-		'new_item_name'     => __( 'New Team Category Name', 'fnfnetwork' ),
-		'menu_name'         => __( 'Team Category', 'fnfnetwork' ),
-	);
+			$labels = array(
+				'name'              => _x( 'Team Categorys', 'taxonomy general name', 'fnfnetwork' ),
+				'singular_name'     => _x( 'Team Category', 'taxonomy singular name', 'fnfnetwork' ),
+				'search_items'      => __( 'Search Team Categorys', 'fnfnetwork' ),
+				'all_items'         => __( 'All Team Categorys', 'fnfnetwork' ),
+				'parent_item'       => __( 'Parent Team Category', 'fnfnetwork' ),
+				'parent_item_colon' => __( 'Parent Team Category:', 'fnfnetwork' ),
+				'edit_item'         => __( 'Edit Team Category', 'fnfnetwork' ),
+				'update_item'       => __( 'Update Team Category', 'fnfnetwork' ),
+				'add_new_item'      => __( 'Add New Team Category', 'fnfnetwork' ),
+				'new_item_name'     => __( 'New Team Category Name', 'fnfnetwork' ),
+				'menu_name'         => __( 'Team Category', 'fnfnetwork' ),
+			);
 
-	$args = array(
-		'hierarchical'      => true,
-		'labels'            => $labels,
-		'show_ui'           => true,
-		'show_admin_column' => true,
-		'query_var'         => true,
-		'rewrite'           => array( 'slug' => 'Team Category' ),
-	);
+				$args = array(
+					'hierarchical'      => true,
+					'labels'            => $labels,
+					'show_ui'           => true,
+					'show_admin_column' => true,
+					'query_var'         => true,
+					'rewrite'           => array( 'slug' => 'Team Category' ),
+				);
 
 	register_taxonomy( 'Team Category', array( 'team' ), $args );
 
