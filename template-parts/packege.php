@@ -16,9 +16,8 @@ get_header();
                     <div class="col-lg-6 ">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-5">
-                            <a href="#" class=" theme-btn theme-btn-fnf ">All Packege <i class="far fa-long-arrow-right"></i></a>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-7">
+                            
+                           
                             <a href="#" class="theme-btn theme-btn-fnf">BTRC PAckege List<i class="far fa-long-arrow-right"></i></a>
                             </div>
                         </div>
