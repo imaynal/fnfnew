@@ -55,58 +55,58 @@ add_action('init', 'fnf_team');
 
 
 /**
- * Create two taxonomies, Team Categorys and Team Tags for the post type "team".
+ * Create two taxonomies, genres and writers for the post type "book".
  *
  * @see register_post_type() for registering custom post types.
  */
-function fnf_team_cat() {
+function fnf_create_team_taxonomies() {
 	// Add new taxonomy, make it hierarchical (like categories)
-			$labels = array(
-				'name'              => _x( 'Team Categorys', 'taxonomy general name', 'fnfnetwork' ),
-				'singular_name'     => _x( 'Team Category', 'taxonomy singular name', 'fnfnetwork' ),
-				'search_items'      => __( 'Search Team Categorys', 'fnfnetwork' ),
-				'all_items'         => __( 'All Team Categorys', 'fnfnetwork' ),
-				'parent_item'       => __( 'Parent Team Category', 'fnfnetwork' ),
-				'parent_item_colon' => __( 'Parent Team Category:', 'fnfnetwork' ),
-				'edit_item'         => __( 'Edit Team Category', 'fnfnetwork' ),
-				'update_item'       => __( 'Update Team Category', 'fnfnetwork' ),
-				'add_new_item'      => __( 'Add New Team Category', 'fnfnetwork' ),
-				'new_item_name'     => __( 'New Team Category Name', 'fnfnetwork' ),
-				'menu_name'         => __( 'Team Category', 'fnfnetwork' ),
-			);
+	$labels = array(
+		'name'              => _x( 'Team_Categories', 'taxonomy general name', 'textdomain' ),
+		'singular_name'     => _x( 'Team_Categorie', 'taxonomy singular name', 'textdomain' ),
+		'search_items'      => __( 'Search Categories', 'textdomain' ),
+		'all_items'         => __( 'All Categories', 'textdomain' ),
+		'parent_item'       => __( 'Parent Categorie', 'textdomain' ),
+		'parent_item_colon' => __( 'Parent Categorie:', 'textdomain' ),
+		'edit_item'         => __( 'Edit Categorie', 'textdomain' ),
+		'update_item'       => __( 'Update Categorie', 'textdomain' ),
+		'add_new_item'      => __( 'Add New Categorie', 'textdomain' ),
+		'new_item_name'     => __( 'New Categorie Name', 'textdomain' ),
+		'menu_name'         => __( 'Categorie', 'textdomain' ),
+	);
 
-				$args = array(
-					'hierarchical'      => true,
-					'labels'            => $labels,
-					'show_ui'           => true,
-					'show_admin_column' => true,
-					'query_var'         => true,
-					'rewrite'           => array( 'slug' => 'Team Category' ),
-				);
+	$args = array(
+		'hierarchical'      => true,
+		'labels'            => $labels,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'rewrite'           => array( 'slug' => 'genre' ),
+	);
 
-	register_taxonomy( 'Team Category', array( 'team' ), $args );
+	register_taxonomy( 'genre', array( 'team' ), $args );
 
 	unset( $args );
 	unset( $labels );
 
 	// Add new taxonomy, NOT hierarchical (like tags)
 	$labels = array(
-		'name'                       => _x( 'Team Tags', 'taxonomy general name', 'fnfnetwork' ),
-		'singular_name'              => _x( 'Team Tag', 'taxonomy singular name', 'fnfnetwork' ),
-		'search_items'               => __( 'Search Team Tags', 'fnfnetwork' ),
-		'popular_items'              => __( 'Popular Team Tags', 'fnfnetwork' ),
-		'all_items'                  => __( 'All Team Tags', 'fnfnetwork' ),
+		'name'                       => _x( 'Team_Tags', 'taxonomy general name', 'textdomain' ),
+		'singular_name'              => _x( 'team_Tag', 'taxonomy singular name', 'textdomain' ),
+		'search_items'               => __( 'Search Tags', 'textdomain' ),
+		'popular_items'              => __( 'Popular Tags', 'textdomain' ),
+		'all_items'                  => __( 'All Tags', 'textdomain' ),
 		'parent_item'                => null,
 		'parent_item_colon'          => null,
-		'edit_item'                  => __( 'Edit Team Tag', 'fnfnetwork' ),
-		'update_item'                => __( 'Update Team Tag', 'fnfnetwork' ),
-		'add_new_item'               => __( 'Add New Team Tag', 'fnfnetwork' ),
-		'new_item_name'              => __( 'New Team Tag Name', 'fnfnetwork' ),
-		'separate_items_with_commas' => __( 'Separate Team Tags with commas', 'fnfnetwork' ),
-		'add_or_remove_items'        => __( 'Add or remove Team Tags', 'fnfnetwork' ),
-		'choose_from_most_used'      => __( 'Choose from the most used Team Tags', 'fnfnetwork' ),
-		'not_found'                  => __( 'No Team Tags found.', 'fnfnetwork' ),
-		'menu_name'                  => __( 'Team Tags', 'fnfnetwork' ),
+		'edit_item'                  => __( 'Edit Tag', 'textdomain' ),
+		'update_item'                => __( 'Update Tag', 'textdomain' ),
+		'add_new_item'               => __( 'Add New Tag', 'textdomain' ),
+		'new_item_name'              => __( 'New Tag Name', 'textdomain' ),
+		'separate_items_with_commas' => __( 'Separate Tags with commas', 'textdomain' ),
+		'add_or_remove_items'        => __( 'Add or remove Tags', 'textdomain' ),
+		'choose_from_most_used'      => __( 'Choose from the most used Tags', 'textdomain' ),
+		'not_found'                  => __( 'No Tags found.', 'textdomain' ),
+		'menu_name'                  => __( 'Tags', 'textdomain' ),
 	);
 
 	$args = array(
@@ -116,14 +116,13 @@ function fnf_team_cat() {
 		'show_admin_column'     => true,
 		'update_count_callback' => '_update_post_term_count',
 		'query_var'             => true,
-		'rewrite'               => array( 'slug' => 'Team Tag' ),
+		'rewrite'               => array( 'slug' => 'writer' ),
 	);
 
-	register_taxonomy( 'Team Tag', 'team', $args );
+	register_taxonomy( 'writer', 'team', $args );
 }
-// hook into the init action and call create_team_taxonomies when it fires
-add_action( 'init', 'fnf_team_cat', 0 );
-
+// hook into the init action and call create_book_taxonomies when it fires
+add_action( 'init', 'fnf_create_team_taxonomies', 0 );
 
 
 

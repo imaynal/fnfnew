@@ -16,14 +16,17 @@
 <?php $args = array(
       'post_type' => array('team'),
       'post_status' => array('publish'),
-      'posts_per_page' => 4,
       'order' => 'ASC',
       'orderby' => 'date',
-     
-   
-    
-    
+      'tax_query' => array(
+        array(
+            'taxonomy' => 'genre',
+            'field'    => 'slug',
+            'terms'    => array( 'home')
+        )
+    )
 );
+
 $_posts = new WP_Query($args);
 ?>
 <?php if ($_posts->have_posts()):?>
